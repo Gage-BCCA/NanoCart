@@ -5,5 +5,6 @@ namespace NanoCart.Carts.Interfaces;
 
 public interface ICartService
 {
-   Task<CartViewResponse> GetCart(CartViewRequest request); 
+   Task<ApiResponse> GetCart(long id);
+   Task<ApiResponse> CreateCart();
 }

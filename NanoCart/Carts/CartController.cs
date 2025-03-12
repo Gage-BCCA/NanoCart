@@ -6,7 +6,7 @@ using NanoCart.Carts.Responses;
 namespace NanoCart.Carts;
 
 [ApiController]
-[Route("[controller]")]
+[Route("/cart")]
 public class CartController : Controller
 {
     private readonly ICartService _cartService;
@@ -16,21 +16,17 @@ public class CartController : Controller
         _cartService = cartService;
     }
 
-    [HttpPost("/fetch")]
-    public async Task<IActionResult> Get(CartViewRequest request)
+    [HttpGet("/fetch")]
+    public async Task<IActionResult> Fetch([FromQuery(Name = "id")] long id)
     {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-        CartViewResponse cart = await _cartService.GetCart(request);
+        ApiResponse cart = await _cartService.GetCart(id);
         return Ok(cart);
     }
 
-    [HttpPost("/create")]
-    public async Task<IActionResult> Create(CartViewRequest request)
+    [HttpGet("/create")]
+    public async Task<IActionResult> Create()
     {
-        return Ok();
+        return Ok(await _cartService.CreateCart());
     }
 
     [HttpPatch("/add")]
@@ -51,7 +47,7 @@ public class CartController : Controller
         return Ok();
     }
 
-    [HttpPut("/replace")]
+    [HttpGet("/refresh")]
     public async Task<IActionResult> Replace(CartViewRequest request)
     {
         return Ok();

@@ -1,6 +1,6 @@
 @MicroCartService_HostAddress = http://localhost:5139
 
-GET {{MicroCartService_HostAddress}}/weatherforecast/
+GET {{MicroCartService_HostAddress}}/cart/create
 Accept: application/json
 
 ###

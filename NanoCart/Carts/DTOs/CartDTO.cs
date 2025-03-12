@@ -21,9 +21,13 @@ public class CartDTO
         this.CartId = cart.Id;
         this.CartExpirationDate = cart.CartExpirationDate;
         this.CartCreationDate = cart.CartCreationDate;
-        this.CartLastModifiedDate = CartLastModifiedDate;
+        this.CartLastModifiedDate = cart.CartLastModifiedDate;
         this.CartItems = cart.CartItems;
-        this.CartQuantity = this.CartItems.Count;
+        if (cart.CartItems != null)
+        {
+            this.CartQuantity = this.CartItems.Count;
+        }
+        
         
     }
 }

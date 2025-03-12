@@ -5,7 +5,7 @@ namespace NanoCart.Carts.Interfaces;
 
 public interface ICartRepository
 {
-    Task<Cart> GetCart(CartViewRequest request);
+    Task<Cart> GetCart(long id);
     
     Task AddItemsToCart(long cartId, long productId);
     
@@ -13,7 +13,7 @@ public interface ICartRepository
     
     Task FlushCart(long cartId);
 
-    Task<long> CreateCart(Cart cart);
+    Task<Cart> CreateCart();
     
     Task DeleteCart(long cartId);
 }

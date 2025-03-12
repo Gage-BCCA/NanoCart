@@ -10,18 +10,19 @@ public class Cart
     public DateTime CartExpirationDate { get; set; }
     public DateTime CartLastModifiedDate { get; set; }
     public DateTime CartLastAccessedDate { get; set; }
-    public ArrayList CartItems { get; set; }
-
-    public Cart(DateTime currentTime)
-    {
-        CartCreationDate = currentTime;
-        CartExpirationDate = currentTime;
-        CartLastModifiedDate = currentTime;
-        CartLastAccessedDate = currentTime;
-    }
+    public ArrayList CartItems { get; set; } = new ArrayList();
 
     public Cart()
     {
+        
     }
+    
+    // public Cart(DateTime currentTime)
+    // {
+    //     CartCreationDate = currentTime.ToString("yyyy-MM-dd HH:mm:ss");
+    //     CartExpirationDate = currentTime.ToString("yyyy-MM-dd HH:mm:ss");
+    //     CartLastModifiedDate = currentTime.ToString("yyyy-MM-dd HH:mm:ss");
+    //     CartLastAccessedDate = currentTime.ToString("yyyy-MM-dd HH:mm:ss");
+    // }
     
 }

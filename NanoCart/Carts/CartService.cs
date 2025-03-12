@@ -16,14 +16,16 @@ public class CartService : ICartService
         this._repository = repository;
     }
     
-    public async Task<CartViewResponse> GetCart(CartViewRequest request)
+    public async Task<ApiResponse> GetCart(long id)
     {
-        Cart cart = await _repository.GetCart(request);
-        return new CartViewResponse(ConstrucutCartDTOFromCart(cart));
+        Cart cart = await _repository.GetCart(id);
+        return new ApiResponse(new CartDTO(cart));
     }
 
-    private CartDTO ConstrucutCartDTOFromCart(Cart cart)
+    public async Task<ApiResponse> CreateCart()
     {
-        return new CartDTO(cart);
+        Cart newCart = await _repository.CreateCart();
+        return new ApiResponse(new CartDTO(newCart));
     }
+    
 }

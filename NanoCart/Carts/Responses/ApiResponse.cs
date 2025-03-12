@@ -3,20 +3,20 @@ using NanoCart.Carts.DTOs;
 
 namespace NanoCart.Carts.Responses;
 
-public class CartViewResponse
+public class ApiResponse
 {
     public Boolean IsSuccess { get; set; }
     public CartDTO Cart { get; set; }
     public string ErrorMessage { get; set; }
 
-    public CartViewResponse(String errorMessage)
+    public ApiResponse(String errorMessage)
     {
         IsSuccess = false;
         ErrorMessage = errorMessage;
         this.Cart = new CartDTO();
     }
 
-    public CartViewResponse(CartDTO cartDto)
+    public ApiResponse(CartDTO cartDto)
     {
         this.IsSuccess = true;
         this.Cart = cartDto;
