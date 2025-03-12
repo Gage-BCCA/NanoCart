@@ -1,7 +1,5 @@
 using NanoCart.Carts;
 using NanoCart.Carts.Interfaces;
-using NanoCart.Companies;
-using NanoCart.Companies.Interfaces;
 using NanoCart.Data;
 
 var builder = WebApplication.CreateBuilder(args);

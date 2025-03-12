@@ -29,18 +29,11 @@ public class DatabaseContext
     private async Task _initializeDatabase()
     {
         var sql = @"
-            DROP TABLE IF EXISTS companies;
             DROP TABLE IF EXISTS carts;
             DROP TABLE IF EXISTS carts_to_items;
 
-            CREATE TABLE companies (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name TEXT NOT NULL
-            );
-
             CREATE TABLE carts (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                company_id INTEGER NOT NULL,
                 creation_date DATETIME NOT NULL,
                 expiration_date DATETIME NOT NULL,
                 last_modified_date DATETIME NOT NULL
@@ -50,7 +43,8 @@ public class DatabaseContext
             CREATE TABLE carts_to_items (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 cart_id INTEGER NOT NULL,
-                product_id INTEGER NOT NULL
+                product_id INTEGER NOT NULL,
+                FOREIGN KEY (cart_id) REFERENCES carts(id) ON DELETE CASCADE
             );
             ";
 
