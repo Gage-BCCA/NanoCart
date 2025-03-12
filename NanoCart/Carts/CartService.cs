@@ -19,12 +19,6 @@ public class CartService : ICartService
     public async Task<CartViewResponse> GetCart(CartViewRequest request)
     {
         Cart cart = await _repository.GetCart(request);
-        
-        // Before moving any further, check that the secret matches
-        if (request.Secret != cart.Secret)
-        {
-            return new CartViewResponse("Secret mismatch");
-        }
         return new CartViewResponse(ConstrucutCartDTOFromCart(cart));
     }
 

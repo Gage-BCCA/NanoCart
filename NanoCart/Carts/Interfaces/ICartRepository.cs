@@ -7,13 +7,13 @@ public interface ICartRepository
 {
     Task<Cart> GetCart(CartViewRequest request);
     
-    Task<Cart> AddItemsToCart();
+    Task AddItemsToCart(long cartId, long productId);
     
-    Task<Cart> RemoveItemFromCart();
+    Task RemoveItemFromCart(long cartId, long productId);
     
-    Task FlushCart();
+    Task FlushCart(long cartId);
 
-    Task<Cart> CreateCart();
+    Task<long> CreateCart(Cart cart);
     
-    Task DeleteCart();
+    Task DeleteCart(long cartId);
 }

@@ -36,7 +36,8 @@ public class DatabaseContext
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 creation_date DATETIME NOT NULL,
                 expiration_date DATETIME NOT NULL,
-                last_modified_date DATETIME NOT NULL
+                last_modified_date DATETIME NOT NULL,
+                last_accessed_date DATETIME NOT NULL
                 
             );
 
