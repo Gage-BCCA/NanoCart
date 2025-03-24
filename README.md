@@ -4,11 +4,12 @@ An un-opinionated shopping cart RESTful microservice, powered by:
   - Dapper
   - SQLite
 
-NanoCart Only Cares About Two Things: The Company and the Cart.
+NanoCart only cares about one thing: the cart.
 
-NanoCart doesn't store product data, or keep sessions, or require a login. It keeps a record of the cart, the company that it belongs to, a secret (that can be anything, as long as it's a string) 
-that's used to provide a basic smoke test against the validity of the request, and a list of IDs. 
+NanoCart doesn't store product data, or keep sessions, or require a login. It keeps a record of the cart and a list of IDs attached to that cart. All carts are accessed through simple
+endpoints and have an expiration date, creation date, last modified date, and last accessed date. 
 
-What are the IDs? NanoCart doesn't care. That's up to you to decide.
+Items can be added and removed. The cart expiry date can be refreshed. The entire cart can be deleted. Just don't ask it what product ID #5 is,
+because it won't know. 
 
 
