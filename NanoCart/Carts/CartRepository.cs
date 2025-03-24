@@ -18,7 +18,7 @@ public class CartRepository : ICartRepository
 
     public async Task<Cart> GetCart(long id)
     {
-        var sql = """
+        var getCartQuery = """
                   SELECT    id as Id,
                             creation_date as CartCreationDate,
                             expiration_date as CartExpirationDate,
@@ -27,9 +27,22 @@ public class CartRepository : ICartRepository
                     FROM    carts
                    WHERE    id = @id
                   """;
+        var getCartItemsQuery = """
+                                SELECT cart_id as CartId,
+                                        product_id as ProductId
+                                from carts_to_items
+                                WHERE   cart_id = @id
+                                """;
 
         using var conn = _context.CreateConnection();
-        return await conn.QuerySingleAsync<Cart>(sql, new { id = id });
+        Cart cart = await conn.QuerySingleAsync<Cart>(getCartQuery, new { id = id });
+        var products = await conn.QueryAsync(getCartItemsQuery, new { id = id });
+        foreach (var product in products)
+        {
+            cart.CartItems.Add(product.ProductId);
+        }
+
+        return cart;
     }
 
     public async Task AddItemsToCart(long cartId, long productId)
@@ -113,5 +126,17 @@ public class CartRepository : ICartRepository
                   """;
         using var conn = _context.CreateConnection();
         await conn.ExecuteAsync(sql, new { cartId = cartId });
+    }
+
+    public async Task RefreshCart(long cartId)
+    {
+        var sql = """
+                  INSERT INTO carts (expiration_date)
+                  VALUES (@ExpirationDate)
+                  WHERE cart_id = @Id
+                  """;
+        DateTime newExpirationDate = DateTime.Now.ToUniversalTime().AddDays(10);
+        using var conn = _context.CreateConnection();
+        await conn.ExecuteAsync(sql, new { Id = cartId, ExpirationDate = newExpirationDate });
     }
 }

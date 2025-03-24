@@ -16,4 +16,6 @@ public interface ICartRepository
     Task<Cart> CreateCart();
     
     Task DeleteCart(long cartId);
+
+    Task RefreshCart(long cartId);
 }

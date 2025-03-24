@@ -17,12 +17,4 @@ public class Cart
         
     }
     
-    // public Cart(DateTime currentTime)
-    // {
-    //     CartCreationDate = currentTime.ToString("yyyy-MM-dd HH:mm:ss");
-    //     CartExpirationDate = currentTime.ToString("yyyy-MM-dd HH:mm:ss");
-    //     CartLastModifiedDate = currentTime.ToString("yyyy-MM-dd HH:mm:ss");
-    //     CartLastAccessedDate = currentTime.ToString("yyyy-MM-dd HH:mm:ss");
-    // }
-    
 }

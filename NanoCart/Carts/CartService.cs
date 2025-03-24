@@ -27,5 +27,25 @@ public class CartService : ICartService
         Cart newCart = await _repository.CreateCart();
         return new ApiResponse(new CartDTO(newCart));
     }
+
+    public async Task AddItemToCart(AddItemRequest request)
+    {
+        await _repository.AddItemsToCart(request.CartId, request.ProductId);
+    }
+    
+    public async Task RemoveItemFromCart(RemoveItemRequest request)
+    {
+        await _repository.AddItemsToCart(request.CartId, request.ProductId);
+    }
+
+    public async Task FlushCart(FlushCartRequest request)
+    {
+        await _repository.FlushCart(request.CartId);
+    }
+
+    public async Task RefreshCart(long cartId)
+    {
+        await _repository.RefreshCart(cartId);
+    }
     
 }

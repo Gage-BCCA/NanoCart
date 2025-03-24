@@ -30,26 +30,34 @@ public class CartController : Controller
     }
 
     [HttpPatch("/add")]
-    public async Task<IActionResult> Push(CartViewRequest request)
+    public async Task<IActionResult> Push([FromBody] AddItemRequest request)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+        await _cartService.AddItemToCart(request);
         return Ok();
     }
 
     [HttpPatch("/remove")]
-    public async Task<IActionResult> Remove(CartViewRequest request)
+    public async Task<IActionResult> Remove([FromBody] RemoveItemRequest request)
     {
+        await _cartService.RemoveItemFromCart(request);
         return Ok();
     }
 
     [HttpDelete("/flush")]
-    public async Task<IActionResult> Flush(CartViewRequest request)
+    public async Task<IActionResult> Flush([FromBody] FlushCartRequest request)
     {
+        await _cartService.FlushCart(request);
         return Ok();
     }
 
     [HttpGet("/refresh")]
-    public async Task<IActionResult> Replace(CartViewRequest request)
+    public async Task<IActionResult> RefreshExpiryDate([FromQuery(Name = "id")] long cartId)
     {
+        await _cartService.RefreshCart(cartId);
         return Ok();
     }
     
