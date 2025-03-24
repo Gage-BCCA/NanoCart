@@ -1,4 +1,7 @@
 # NanoCart 🛒
+
+**=== Still a work in progress ===** 
+
 An un-opinionated shopping cart RESTful microservice, powered by:
   - .NET Core
   - Dapper
